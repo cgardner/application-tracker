@@ -19,7 +19,7 @@
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
-			"extensions": ["vscjava.vscode-java-pack", "redhat.vscode-yaml", "GitHub.copilot"]
+			"extensions": ["vscjava.vscode-java-pack", "redhat.vscode-yaml", "GitHub.copilot", "redhat.vscode-xml", "redhat.fabric8-analytics"]
 		}
 	}
 
