@@ -1,0 +1,1 @@
+export const fetchPositions = async () => await fetch('/api/v1/position').then(res => res.json())
