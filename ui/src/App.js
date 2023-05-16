@@ -1,24 +1,16 @@
-import logo from './logo.svg';
+import { Fragment } from 'react';
 import './App.css';
+import NavBar from './components/navigation/navbar';
+
+import PositionList from './components/positions/position-list';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+      <NavBar />
+      <PositionList />
     </div>
+
   );
 }
 
