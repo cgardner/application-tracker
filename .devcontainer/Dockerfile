@@ -11,9 +11,18 @@ RUN if [ "${INSTALL_MAVEN}" = "true" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends entr
+    && apt-get -y install --no-install-recommends entr 
+    
+RUN wget "https://github.com/liquibase/liquibase/releases/download/v4.21.1/liquibase-4.21.1.tar.gz" -O /tmp/liquibase.tar.gz \
+    && mkdir -p /opt/liquibase \
+    && tar -C /opt/liquibase -xzf /tmp/liquibase.tar.gz \
+    && chmod +x /opt/liquibase/liquibase \
+    && ln -s /opt/liquibase/liquibase /usr/local/bin/ \
+    && rm /tmp/liquibase.tar.gz
 
-RUN echo 'alias g="git"' > /etc/bash.bashrc
+RUN echo 'alias g="git"' > /etc/bash.bashrc \
+    && echo 'alias liquibase="$(which liquibase) --defaultsFile=src/main/resources/application.yml --changelog-file src/main/resources/db/changelog/db.changelog-master.yaml"' >> /etc/bash.bashrc
+
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
