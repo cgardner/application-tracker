@@ -6,6 +6,8 @@ ARG MAVEN_VERSION=""
 ARG INSTALL_GRADLE="false"
 ARG GRADLE_VERSION=""
 
+ENV WORKSPACE_ROOT="/workspaces/jobmanager"
+
 RUN if [ "${INSTALL_MAVEN}" = "true" ]; then su vscode -c "umask 0002 && . /usr/local/sdkman/bin/sdkman-init.sh && sdk install maven \"${MAVEN_VERSION}\""; fi \
     && if [ "${INSTALL_GRADLE}" = "true" ]; then su vscode -c "umask 0002 && . /usr/local/sdkman/bin/sdkman-init.sh && sdk install gradle \"${GRADLE_VERSION}\""; fi
 
@@ -20,8 +22,8 @@ RUN wget "https://github.com/liquibase/liquibase/releases/download/v4.21.1/liqui
     && ln -s /opt/liquibase/liquibase /usr/local/bin/ \
     && rm /tmp/liquibase.tar.gz
 
-RUN echo 'alias g="git"' > /etc/bash.bashrc \
-    && echo 'alias liquibase="$(which liquibase) --defaultsFile=src/main/resources/application.yml --changelog-file src/main/resources/db/changelog/db.changelog-master.yaml"' >> /etc/bash.bashrc
+RUN echo 'export LIQUIBASE_DEFAULTS_FILE="${WORKSPACE_ROOT}/src/main/resources/application.yml"' >> /etc/bash.bashrc \
+    && echo 'alias g="git"' >> /etc/bash.bashrc 
 
 
 # [Optional] Uncomment this line to install global node packages.
