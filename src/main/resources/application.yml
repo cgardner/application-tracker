@@ -6,8 +6,6 @@ spring:
     driver-class-name: org.postgresql.Driver
 liquibase:
   changeLogFile: src/main/resources/db/changelog/db.changelog-master.yaml
-  databaseChangelogTableName: jobmanager_DATABASECHANGELOG
-  databaseChangelogLockTableName: jobmanager_DATABASECHANGELOGLOCK
   driver: org.postgresql.Driver
   url: jdbc:postgresql://db:5432/jobmanager
   username: postgres
