@@ -5,19 +5,12 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                       http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-
-  <changeSet id="2023-05-24-create-schema" author="Craig Gardner">
-    <sql dbms="postgresql" endDelimiter=";" failOnError="true">
-      CREATE SCHEMA IF NOT EXISTS jobmanager;
-    </sql> 
-  </changeSet>
-
   <changeSet id="2023-05-22-create-applications-table" author="Craig Gardner">
-  <preConditions onFail="WARN">
-    <not>
-      <tableExists tableName="jobmanager.applications" />
-    </not>
-  </preConditions>
+    <preConditions>
+      <not>
+        <tableExists tableName="applications" />
+      </not>
+    </preConditions>
     <createTable tableName="applications">
       <column name="id" type="uuid"></column>
       <column name="position_id" type="uuid">
@@ -43,31 +36,23 @@
       </column>
     </createTable>
   </changeSet>
-  
+
   <changeSet id="2023-05-24-create-positions-table" author="Craig Gardner">
-    <preConditions onFail="MARK_RAN">
+    <preConditions>
       <not>
-        <tableExists tableName="jobmanager.positions" /> 
+        <tableExists tableName="positions"/>
       </not>
     </preConditions>
-    
+
     <createTable tableName="positions">
       <column name="id" type="uuid">
         <constraints nullable="false" />
-      </column> 
-      <column name="url" type="string">
       </column>
-      <column name="company" type="string">
-      </column>
-      <column name="title" type="string">
-      </column>
-      <column name="created_date" type="timestamp">
-      </column>
-      <column name="updated" type="timestamp">
-      </column>
+      <column name="url" type="text"> </column>
+      <column name="company" type="text"> </column>
+      <column name="title" type="text"> </column>
+      <column name="created_date" type="timestamp"> </column>
+      <column name="updated" type="timestamp"> </column>
     </createTable>
-  
   </changeSet>
-
-
 </databaseChangeLog>

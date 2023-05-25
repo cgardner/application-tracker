@@ -1,4 +1,7 @@
 databaseChangeLog:
-  - include:
-      file: changesets/20230522-create-table.xml
-      relativeToChangelogFile: true
+    - property:
+          name: dbms
+          value: postgresql
+    - includeAll:
+          path: changesets
+          relativeToChangelogFile: true

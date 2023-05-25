@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/jobmanager
+    url: jdbc:postgresql://db:5432/jobmanager_test
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -9,6 +9,6 @@ liquibase:
   databaseChangelogTableName: jobmanager_DATABASECHANGELOG
   databaseChangelogLockTableName: jobmanager_DATABASECHANGELOGLOCK
   driver: org.postgresql.Driver
-  url: jdbc:postgresql://db:5432/jobmanager
+  url: jdbc:postgresql://db:5432/jobmanager_test
   username: postgres
   password: postgres
